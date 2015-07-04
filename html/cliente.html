@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <title>Controladoeres</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+  <script src="../script/angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+  <div class="container" ng-controller="customersCtrl">
+    <h1>Registro de clientes</h1>
+    <hr>
+    <form class="form-horizontal" role="form" ng-submit="add(nombre,apellido)">
+      <div class="form-group">
+        <label for="Nombre">Nombre:</label>
+        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" ng-model="nombre" >
+        <label for="Apellido">Apellido:</label>
+        <input type="text" class="form-control" id="Apellido" placeholder="Apellido" ng-model="apellido">
+      </div>
+      <button type="submit" class="btn btn-default">Guardar</button>
+    </form>
+    <hr>
+    
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        <div class="input-group">
+          <span class="input-group-addon">Buscar</span>
+          <input type="text" class="form-control" placeholder="Buscar cliente" ng-model="buscar">
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>
+              <a href="" ng-click="ordenarPor('CliApe')">
+                Apellido/s
+              </a>
+              <span class="caret" style="cursor: pointer" ng-click="ordenarPor('-CliApe')"></span>
+            </th>
+            <th>Nombre</th>
+          </tr> 
+          </thead>
+          <tbody>
+          <tr ng-repeat="cliente in clientes | orderBy:ordenSeleccionado | filter:buscar">
+            
+            <td>{{cliente.CliApe | uppercase }}</td>
+            <td>{{cliente.CliNom | uppercase}}</td>
+            <td><a class="text-danger" href="" ng-click="delete(cliente.CliCod)">eliminar</a></td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('customersCtrl',  function($scope, $http) {
+  
+  $http.get("../server/cliente.php").success(function (response) {$scope.clientes = response;});
+
+  $scope.ordenarPor = function(orden) {
+    $scope.ordenSeleccionado = orden;
+  };
+  
+  $scope.add = function($nombre,$apellido){
+    $http.get('../server/cliente.php?nombre='+$nombre+'&apellido='+$apellido);
+    $http.get("../server/cliente.php").success(function (response) {$scope.clientes = response;});
+  };
+  $scope.delete = function($codigo){
+    $http.get('../server/cliente.php?codigo='+$codigo);
+    $http.get("../server/cliente.php").success(function (response) {$scope.clientes = response;});
+  };
+});
+</script>
+
+</html>
