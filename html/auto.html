@@ -46,13 +46,12 @@
           </tr> 
           </thead>
           <tbody>
-          <tr ng-repeat="cliente in clientes | orderBy:ordenSeleccionado | filter:buscar">
-            
+          <tr ng-repeat="cliente in clientes | orderBy:ordenSeleccionado | filter:buscar" ng-model="aselecliente" >   
             <td>{{cliente.CliApe | uppercase }}</td>
             <td>{{cliente.CliNom | uppercase}}</td>
-            <td><input type="radio" id="selecliente" name="selecliente" ng-model="selecliente" value="{{cliente.CliCod}}"></td>
-
+            <td><input type="radio" id="selecliente" name="selecliente" ng-model="aselecliente" value="{{cliente.CliCod}}"></td>
           </tr>
+          {{aselecliente}}
           </tbody>
         </table>
       </div>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Mantenimiento</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<script src="script/jquery-1.11.1.min.js"></script>
+	<script src="script/bootstrap.min.js"></script>
+	<script src="script/angular.min.js"></script>
+	<script src="script/angular-animate.js"></script>
+	<script src="script/script.js"></script>
+	<script src="script/main.js"></script>
+</head>
+
+<body ng-app="myApp">
+<nav class="navbar navbar-default navbar-static-top">
+<!-- MENU -->
+<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">Menu</button>
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Mantenimiento</a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      	
+		<ul class="nav navbar-nav navbar-right">
+		<li><a href="#" target="_blank">Base de Datos 1</a></li>
+		<li class="dropdown ">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuenta<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		<li class="dropdown-header">Configuraciones</li>
+		<li class=""><a href="#">Enlace2</a></li>
+		<li class="divider"></li>
+		<li><a href="#">Salir</a></li>
+		</ul>
+		</li>
+		</ul>
+	</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+<!-- FIN_MENU -->
+</nav>
+
+<div class="container-fluid main-container">
+
+	<!--  PANELIZQUIERDO -->
+	<div class="col-md-2 sidebar">
+		<div class="row">
+			<div class="absolute-wrapper"></div>
+			<div class="side-menu">
+			<nav class="navbar navbar-default" role="navigation">
+			<!-- Main Menu -->
+			<div class="side-menu-container" >
+				<ul class="nav navbar-nav">
+					<li class="active" data-toggle="modal" data-target="#resgOrden"><a> Registrar nueva Orden </a></li>
+					<li class="active" data-toggle="modal" data-target="#resgPersonal"><a> Registro de personal </a></li>
+					<li class="active" data-toggle="modal" data-target="#resgCliente"><a> Registro de clientes </a></li>
+					<li class="active" data-toggle="modal" data-target="#resgAuto"><a> Registro de Autos </a></li>
+					<li class="active" data-toggle="modal" data-target="#mostCliente"><a> Mostrar Clientes </a></li>
+					<li class="active" data-toggle="modal" data-target="#mostPersonal"><a> Mostrar Personal </a></li>
+					<li class="active" data-toggle="modal" data-target="#delCliente"><a> Eliminar Clientes </a></li>
+				</ul>
+			</div>
+			</nav>
+			</div>
+		</div>
+	</div>
+	<!--  FIN_PANELIZQUIERDO -->
+
+	<!--  PANELDERECHO -->
+	<div class="col-md-10 content">
+		<!-- Trigger the modal with a button -->
+
+		<!-- MODAL1 -->
+		<div id="resgPersonal" class="modal fade" role="dialog" ng-controller="myCtrlPersonal"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Resgistrar Personal</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body"  >
+		      	  <div class="form-group">
+			        <label for="Nombre">Nombre:</label>
+			        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" ng-model="personal.nombre" >
+			        <label for="Apellido">Apellido:</label>
+			        <input type="text" class="form-control" id="Apellido" placeholder="Apellido" ng-model="personal.apellido">
+			        <label for="Cargo">Cargo:</label>
+			        <select class="form-control" id="Cargo" ng-model="personal.cargo">
+   						<option ng-repeat="cargo in cargos" value="{{cargo.name}}">{{cargo.name}}</option>
+					</select>
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	  			<button type="button"  ng-click="add()" data-dismiss="modal" class="btn btn-default">Registrar</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL1 -->
+
+		<!-- MODAL2 -->
+		<div id="resgCliente" class="modal fade" role="dialog" ng-controller="myCtrlCliente"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Registrar Cliente</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body" >
+		      	<div class="form-group">
+			        <label for="Nombre">Nombre:</label>
+			        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" ng-model="cliente.nombre" >
+			        <label for="Apellido">Apellido:</label>
+			        <input type="text" class="form-control" id="Apellido" placeholder="Apellido" ng-model="cliente.apellido">
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  			<button type="button" ng-click="add()" data-dismiss="modal" class="btn btn-default">Guardar</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL2 -->
+
+		<!-- MODAL3 -->
+		<div id="resgAuto" class="modal fade" role="dialog" ng-controller="myCtrlAuto"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Registro de Auto</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body" >
+		      	
+		      	<div class="form-group">
+			        <label for="">Placa:</label>
+			        <input type="text" class="form-control" id="Placa" placeholder="Placa" ng-model="auto.placa" >
+			        <label for="Kilometraje">Kilometraje:</label>
+			    	<input type="text" class="form-control" id="Kilometraje" placeholder="Kilometraje" ng-model="auto.kilometraje">
+		      		<label for="">Cliente:</label>
+				    <div class="input-group">
+				        <span class="input-group-addon">Buscar</span>
+				        <input type="text" class="form-control" placeholder="Buscar cliente" ng-model="buscar">
+				    </div>
+			    	
+			        <table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>
+			              <a href="" ng-click="ordenarPor('CliApe')">Apellido/s</a>
+			              <span class="caret" style="cursor: pointer" ng-click="ordenarPor('-CliApe')"></span>
+			            </th>
+			            <th>Nombre</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <tr ng-repeat="cliente in clientes | orderBy:ordenSeleccionado | filter:buscar">   
+			            <td>{{cliente.CliApe | uppercase }}</td><td>{{cliente.CliNom | uppercase}}</td>
+			            <td><input type="radio" name="listCliente" ng-model="auto.cliente" value="{{cliente.CliCod}}"></td>
+			          </tr>
+			          </tbody>
+			        </table>
+			    </div>
+			    
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  			<button type="button"  ng-click="add()" data-dismiss="modal" class="btn btn-default">Guardar</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL3 -->
+		
+		<!-- MODAL4 -->
+		<div id="resgOrden" class="modal fade" role="dialog" ng-controller="myCtrlOrden"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Resgistrar Personal</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      	<div class="modal-body"  >
+		      		<div class="form-group">
+
+				      	<label for="idAuto">Seleccionar Auto:</label>
+				      	<select id="idAuto" class="form-control" ng-model="OrdenCabecera.auto">
+		   					<option ng-repeat="auto in autos" value="{{auto.AutPla}}">{{auto.AutPla}}</option>
+						</select>
+
+						<label for="idTecnico">Seleccionar Tecnico:</label>
+						<select ng-model="OrdenCabecera.personal" class="form-control">
+		   					<option ng-repeat="personal in personales" value="{{personal.TecCod}}">{{personal.TecApe +" , "+personal.TecNom}}</option>
+						</select>
+
+						<label for="idTecnico">Seleccionar Encargado:</label>
+						<select ng-model="OrdenCabecera.encargado" class="form-control">
+		   					<option ng-repeat="jefe in jefes" value="{{jefe.EncCod}}">{{jefe.EncApe +" , "+jefe.EncNom}}</option>
+						</select>
+
+						<table class="table table-striped">
+				        	<tr>   
+					            <td>
+					            	<label>Hora Inicio:</label>
+					            	<input type="time" ng-model="OrdenCabecera.HoraInicio" class="form-control">
+					            </td>
+					            <td>
+					            	<label>Hora Fin:</label>
+					            	<input type="time" ng-model="OrdenCabecera.HoraFin" class="form-control">
+					            </td>
+				          	</tr>
+				          	<tr>   
+					            <td>
+					            	<label>Fecha Inicio:</label>
+					            	<input type="date" ng-model="OrdenCabecera.FechaInicio" class="form-control">
+					            </td>
+					            <td>
+					            	<label>Fecha Fin:</label>
+					            	<input type="date" ng-model="OrdenCabecera.FechaFin" class="form-control">
+					            </td>
+				          	</tr>
+			        	</table>
+
+						<label for="idTrabajo">Tipo de Trabajo:</label>
+						<table id="idTrabajo" class="table table-striped">
+				        	<tr ng-repeat="trabajoL in trabajos">   
+					            <td>{{trabajoL.TraNom | uppercase }}</td>
+					            <td><input type="checkbox" checklist-model="List.Trabajos" checklist-value="trabajoL"></td>
+				          	</tr>
+			        	</table>
+
+			        	<label for="idDescripciones">Descripcion:</label>
+						<table id="idDescripciones" class="table table-striped">
+				        	<tr ng-repeat="trabajo in List.Trabajos" >   
+					            <td>
+					            	<label>{{trabajo.TraNom}}:</label>
+					            	<textarea class="form-control" rows="2" ng-model="OrdenDetalle.Descripcion[trabajo.TraCod]"></textarea>
+					            	<label>Costo:</label>
+					            	<input type="number" class="form-control" ng-model="OrdenDetalle.Costos[trabajo.TraCod]">
+					            <td>					            
+				          	</tr>
+
+			        	</table>        	
+		      			<button type="button" class="btn btn-default"  ng-click="setTotals()">Calcular Monto</button>
+		      			<label>Monto: {{OrdenCabecera.CostoTotal}}</label>
+		      			{{OrdenCabecera}}
+					</div>
+		      	</div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default"  data-dismiss="modal"  >Cancelar</button>
+	  			<button type="button"  ng-click="add()" data-dismiss="modal" class="btn btn-default">Registrar</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL4 -->
+
+		<!-- MODAL5 -->
+		<div id="mostCliente" class="modal fade" role="dialog" ng-controller="myCtrlCliente"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Clientes Registrados</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body"  >
+		      	  <div class="form-group">
+		      	  	 <table class="table table-striped">
+			          <thead>
+			          <tr>
+			
+			            <th>Nombre</th>
+			            <th>Apellido</th>
+			            
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <tr ng-repeat="cliente in clientes">
+
+			            <td>{{cliente.CliNom | uppercase}}</td>
+			            <td>{{cliente.CliApe | uppercase}}</td>
+			          </tr>
+			          </tbody>
+			        </table>
+			        
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL5 -->
+
+		<!-- MODAL6 -->
+		<div id="mostPersonal" class="modal fade" role="dialog" ng-controller="myCtrlPersonal"><div class="modal-dialog"><div class="modal-content">
+
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Personal de la empresa</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body"  >
+		      	  <div class="form-group">
+		      	  	 
+		      	  	 <table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>Nombre</th>
+			            <th>Apellido</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <label>Tecnicos</label>
+			          <tr ng-repeat="personal in personales">
+
+			            <td>{{personal.TecNom | uppercase}}</td>
+			            <td>{{personal.TecApe | uppercase}}</td>
+		
+			          </tr>
+			           
+			          </tbody>
+			        </table>
+
+					<table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>Nombre</th>
+			            <th>Apellido</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <label>Encargados</label>
+			          <tr ng-repeat="jefe in jefes">
+			            <td>{{jefe.EncNom | uppercase}}</td>
+			            <td>{{jefe.EncApe | uppercase}}</td>
+			          </tr>
+			           
+			          </tbody>
+			        </table>
+
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL6 -->
+
+		<!-- MODAL7 -->
+		<div id="mostAuto" class="modal fade" role="dialog" ng-controller="myCtrlPersonal"><div class="modal-dialog"><div class="modal-content">
+
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Personal de la empresa</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body"  >
+		      	  <div class="form-group">
+		      	  	 
+		      	  	 <table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>Nombre</th>
+			            <th>Apellido</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <label>Tecnicos</label>
+			          <tr ng-repeat="personal in personales">
+
+			            <td>{{personal.TecNom | uppercase}}</td>
+			            <td>{{personal.TecApe | uppercase}}</td>
+		
+			          </tr>
+			           
+			          </tbody>
+			        </table>
+
+					<table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>Nombre</th>
+			            <th>Apellido</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <label>Encargados</label>
+			          <tr ng-repeat="jefe in jefes">
+			            <td>{{jefe.EncNom | uppercase}}</td>
+			            <td>{{jefe.EncApe | uppercase}}</td>
+			          </tr>
+			           
+			          </tbody>
+			        </table>
+
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL7 -->
+
+		<!-- MODAL8 -->
+		<div id="delCliente" class="modal fade" role="dialog" ng-controller="myCtrlClienteDel"><div class="modal-dialog"><div class="modal-content">
+		      
+		      <!-- TITULO-->
+		      <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Dar de baja a un cliente</h4>
+		      </div>
+		      <!-- FIN_TITULO -->
+
+		      <!-- CONTENIDO -->
+		      <div class="modal-body"  >
+		      	  <div class="form-group">
+		      	  	<div class="input-group">
+				        <span class="input-group-addon">ID</span>
+				        <input type="text" class="form-control" placeholder="ID cliente" ng-model="ID" >
+				    </div>
+			        <table class="table table-striped">
+			          <thead>
+				          <tr>
+				            <th>Apellido/s</th>
+				            <th>Nombre</th>
+				          </tr> 
+			          </thead>
+			          <tbody>
+				          <tr ng-repeat="cliente in clientes | orderBy:ordenSeleccionado | filter:buscar">   
+				            <td>{{cliente.CliApe | uppercase }}</td><td>{{cliente.CliNom | uppercase}}</td>
+				            <td>{{cliente.CliCod}}</td>
+				          </tr>
+			          </tbody>
+			        </table>
+			      
+			      </div>
+		      </div>
+		      <!-- FIN CONTENIDO-->
+		      
+		      <!-- PIE -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	  			<button type="button"  ng-click="del()" data-dismiss="modal" class="btn btn-default">Eliminar</button>
+		      </div>
+		      <!-- FIN PIE -->
+
+		</div></div></div>
+		<!-- FIN MODAL8 -->
+
+
+		<!-- Panel de ORDEN de TRABAJOS -->
+		<div class="panel panel-default" ng-controller="myCtrl">
+			<div class="panel-heading">ORDEN DE TRABAJO</div>
+			<div class="panel-body">
+				<div class="form-group">	
+			        <table class="table table-striped">
+			          <thead>
+			          <tr>
+			            <th>Placa del Auto</th>
+			            <th>Nombre del Tecnico</th>
+			            <th>Monto</th>
+			          </tr> 
+			          </thead>
+			          <tbody>
+			          <tr ng-repeat="orden in ordenes">
+			            <td>{{orden.AutPla | uppercase}}</td>
+			            <td>{{orden.PerCod | uppercase}}</td>
+			            <td>{{orden.OrdCabMonTot }}</td>
+			            <td><a data-toggle="modal" data-target="#ordDet">verDetalle</a></td>
+			          </tr>
+			          </tbody>
+			        </table>
+			    </div>
+			</div>
+
+		</div>
+		<!-- fin Panel de ORDEN de TRABAJOS -->
+	</div>
+	<!--  FIN_PANELDERECHO -->
+
+	<footer class="pull-left footer"><p class="col-md-12"><hr class="divider">by: Roycer</p></footer>
+
+</div>
+
+
+
+</body>
+</html>

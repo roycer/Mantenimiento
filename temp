@@ -1,0 +1,41 @@
+<br>Seleccionar Auto:<br>
+		      	<select ng-model="CodigoAuto">
+   					<option ng-repeat="auto in autos" value="{{auto.AutPla}}">{{auto.AutPla}}</option>
+				</select>
+				<br>Seleccionar Personal:<br>
+				<select ng-model="CodigoPersonal">
+   					<option ng-repeat="personal in personales" value="{{personal.PerCod}}">{{personal.PerApel +","+personal.PerNom}}</option>
+				</select>
+				<br><br>TIPO DE TRABAJO<br> 
+				<input type="radio" name="TipoTrabajo" ng-model="TipoTrabajo" value="Mecanico" />
+      			<label>Sistema Mecanico</label>
+				<br> 
+				<input type="radio" name="TipoTrabajo" ng-model="TipoTrabajo" value="Electronico" />
+      			<label>Sistema Electrico</label>
+				<br> 
+				<input type="radio" name="TipoTrabajo" ng-model="TipoTrabajo" value="Soldadura" />
+      			<label>Soldadura</label>
+      			<br> 
+				<input type="radio" name="TipoTrabajo" ng-model="TipoTrabajo" value="Pintado" />
+      			<label>Pintado</label>
+      			<br> 
+				<input type="radio" name="TipoTrabajo" ng-model="TipoTrabajo" value="Carrocero" />
+      			<label>Carrocero</label>
+      			<br> Descripcion:<br>
+      			<input type="text" ng-model="Descripcion">
+      			<br> Monto: <br>
+      			<input type="number" ng-model="Monto">
+      			<br><br>
+      			<br>Hora de inicio:<br>
+      			<input type="time" ng-model="dia">
+      			<br>Hora de fin:<br>
+      			<input type="time">
+      			<br>Fecha de inicio:<br>
+      			<input type="date">
+      			<br>Fecha de fin:<br>
+      			<input type="date">
+      			{{dia}}
+		      	<br>Seleccionar Encargado:<br>
+				<select ng-model="CodigoJefe">
+   					<option ng-repeat="jefe in jefes" value="{{jefe.PerCod}}">{{jefe.PerApel +","+jefe.PerNom}}</option>
+				</select>
