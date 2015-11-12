@@ -3,8 +3,8 @@ function conectar(){
     // set up the connection variables
     $db_name  = 'mantenimiento';
     $hostname = 'localhost';
-    $username = 'bd1';
-    $password = 'pass';
+    $username = 'adminmhwaYIu';
+    $password = 'pUtpFWeqwIuP';
 
     // connect to the database
     return new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
