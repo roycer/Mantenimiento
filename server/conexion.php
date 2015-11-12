@@ -1,10 +1,16 @@
 <?php
 function conectar(){
     // set up the connection variables
-    $db_name  = 'mantenimiento';
+    define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
+    define('DB_PORT',getenv('OPENSHIFT_MYSQL_DB_PORT')); 
+    define('DB_USER',getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+    define('DB_PASS',getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
+    define('DB_NAME',getenv('OPENSHIFT_GEAR_NAME'));
     
     // connect to the database
-    return new PDO("mysql:host=mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/;dbname=$db_name", $OPENSHIFT_MYSQL_DB_USERNAME, $OPENSHIFT_MYSQL_DB_PASSWORD);
+    $dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.';port='.DB_PORT;
+    
+    return new PDO($dsn, DB_USER, DB_PASS);
     // a query get all the records from the users table
 }
 
