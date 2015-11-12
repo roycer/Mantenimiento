@@ -2,7 +2,7 @@
 function conectar(){
     // set up the connection variables
     $db_name  = 'mantenimiento';
-    $hostname = 'localhost';
+    $hostname = '127.10.119.130';
     $username = 'adminmhwaYIu';
     $password = 'pUtpFWeqwIuP';
 
