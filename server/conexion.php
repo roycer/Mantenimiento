@@ -2,12 +2,9 @@
 function conectar(){
     // set up the connection variables
     $db_name  = 'mantenimiento';
-    $hostname = '127.10.119.130';
-    $username = 'adminmhwaYIu';
-    $password = 'pUtpFWeqwIuP';
-
+    
     // connect to the database
-    return new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    return new PDO("mysql:host=mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/;dbname=$db_name", $OPENSHIFT_MYSQL_DB_USERNAME, $OPENSHIFT_MYSQL_DB_PASSWORD);
     // a query get all the records from the users table
 }
 
